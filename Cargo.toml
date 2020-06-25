@@ -1,0 +1,36 @@
+[package]
+name = "twitch-rs"
+version = "0.1.0"
+authors = ["John Peel <john@dgby.org>"]
+edition = "2018"
+
+[features]
+default = ["clips", "search"]
+helix = []
+clips = ["helix"]
+search = ["helix"]
+
+[dependencies]
+tokio = { version = "0.2", features = ["full"] }
+reqwest = { version = "0.10", default-features = false, features = ["rustls-tls", "json"] }
+oauth2 = { version = "3.0", features = ["futures-03", "reqwest-010"], default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+async-trait = "0.1"
+serde_urlencoded = "0.6"
+
+[[example]]
+name = "category_search"
+required-features = ["search"]
+
+[[example]]
+name = "channel_search"
+required-features = ["search"]
+
+[[example]]
+name = "get_clips"
+required-features = ["clips"]
+
+[[example]]
+name = "get_clips_by_broadcaster"
+required-features = ["clips"]
